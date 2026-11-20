@@ -1,0 +1,2 @@
+const NOISE=[0,1,2,3].map(k=>{const c=document.createElement('canvas');c.width=960;c.height=540;const x=c.getContext('2d'),d=x.createImageData(960,540),r=rng(k+3);for(let i=0;i<d.data.length;i+=4){const v=r()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255;}x.putImageData(d,0,0);return c;});
+window.ready=document.fonts.load('900 64px "Noto Serif CJK SC"').then(()=>document.fonts.load('500 26px "Noto Serif CJK SC"')).then(()=>{draw(0);return true;});

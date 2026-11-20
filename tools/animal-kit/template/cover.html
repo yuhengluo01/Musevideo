@@ -1,0 +1,29 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}canvas{display:block}</style></head><body><canvas id="c"></canvas><script>
+const SER='"Noto Serif CJK SC"';
+const C={letters:[['墙','#ffcf9a','两头讨好'],['头','#c8e8ff','见风使舵'],['草','#7dff7a','随风倒']],title:'都对都对',grad:['#f0ffe8','#7dff7a','#5ae0d0'],glow:'rgba(120,255,120,.85)',pill:'人间动物志 · 第四期',pillCol:'rgba(125,255,122,.95)',line1:'你身边',hook:['有没有','墙头草？'],hi:'#7dff7a'};
+function grad(ctx,w){const g=ctx.createLinearGradient(-w/2,0,w/2,0);C.grad.forEach((c,i)=>g.addColorStop(i/(C.grad.length-1),c));return g;}
+function pill(ctx,s,x,y,sz=30){ctx.save();ctx.font=`700 ${sz}px ${SER}`;const w=ctx.measureText(s).width+sz*1.6;ctx.fillStyle=C.pillCol;ctx.beginPath();ctx.roundRect(x-w/2,y-sz*1.15,w,sz*1.7,sz*.85);ctx.fill();ctx.fillStyle='#08141a';ctx.textAlign='center';ctx.fillText(s,x,y+sz*.05);ctx.restore();}
+function letters(ctx,x,y,size,gap){ctx.save();ctx.font=`900 ${size}px ${SER}`;ctx.textAlign='left';const ws=C.letters.map(l=>ctx.measureText(l[0]).width);const tw=ws.reduce((a,b)=>a+b,0)+gap*(ws.length-1);let x0=x-tw/2;
+  C.letters.forEach((l,i)=>{ctx.fillStyle=l[1];ctx.shadowColor=l[1];ctx.shadowBlur=size*.28;ctx.fillText(l[0],x0,y);ctx.shadowBlur=0;ctx.lineWidth=2;ctx.strokeStyle='rgba(255,255,255,.55)';ctx.strokeText(l[0],x0,y);
+    ctx.font=`600 ${size*.2}px ${SER}`;ctx.textAlign='center';ctx.fillStyle=l[1];ctx.fillText(l[2],x0+ws[i]/2,y+size*.3);ctx.font=`900 ${size}px ${SER}`;ctx.textAlign='left';x0+=ws[i]+gap;});ctx.restore();}
+function title(ctx,x,y,size){ctx.save();ctx.translate(x,y);ctx.font=`900 ${size}px ${SER}`;ctx.textAlign='center';ctx.lineWidth=size*.05;ctx.strokeStyle='rgba(6,8,20,.85)';ctx.lineJoin='round';ctx.strokeText(C.title,0,0);ctx.fillStyle=grad(ctx,size*3);ctx.shadowColor=C.glow;ctx.shadowBlur=size*.25;ctx.fillText(C.title,0,0);ctx.shadowBlur=0;ctx.lineWidth=2;ctx.strokeStyle='rgba(255,255,255,.4)';ctx.strokeText(C.title,0,0);ctx.restore();}
+function hook(ctx,x,y,size){ctx.save();ctx.font=`900 ${size}px ${SER}`;ctx.textAlign='center';ctx.fillStyle='#f6f2ff';ctx.shadowColor='rgba(0,0,0,.8)';ctx.shadowBlur=14;ctx.fillText(C.line1,x,y);ctx.textAlign='left';const[a,b]=C.hook;const wa=ctx.measureText(a).width,wb=ctx.measureText(b).width;const x0=x-(wa+wb)/2,y2=y+size*1.2;ctx.fillText(a,x0,y2);ctx.fillStyle=C.hi;ctx.shadowColor=C.hi;ctx.shadowBlur=24;ctx.fillText(b,x0+wa,y2);ctx.restore();}
+function veil(ctx,cx,cy,rx,ry,a){const g=ctx.createRadialGradient(cx,cy,0,cx,cy,1);g.addColorStop(0,`rgba(4,6,16,${a})`);g.addColorStop(.6,`rgba(4,6,16,${a*.7})`);g.addColorStop(1,'rgba(4,6,16,0)');ctx.save();ctx.translate(cx,cy);ctx.scale(rx,ry);ctx.fillStyle=g;ctx.fillRect(-1,-1,2,2);ctx.restore();}
+window.render=async function(mode){await document.fonts.load('900 64px '+SER);await document.fonts.load('600 30px '+SER);await document.fonts.load('700 30px '+SER);
+  const img=new Image();img.src=mode=='h'?'bg_h.png':'bg_v.png';await img.decode();const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+  if(mode=='h'){cv.width=1920;cv.height=1080;ctx.drawImage(img,0,0);veil(ctx,1390,540,800,660,.97);veil(ctx,1390,540,600,480,.6);const X=1390;
+    pill(ctx,C.pill,X,230);letters(ctx,X,430,170,34);title(ctx,X,740,210);
+    
+    ctx.save();ctx.font='900 58px '+SER;ctx.textAlign='left';const s1=C.line1+'，'+C.hook[0],w1=ctx.measureText(s1).width,w2=ctx.measureText(C.hook[1]).width;ctx.restore();
+    // single line hook: line1 + hook
+    ctx.save();ctx.globalCompositeOperation='source-over';ctx.restore();
+    txtLine(ctx,X,870,58);
+    ctx.save();ctx.font='700 34px '+SER;ctx.textAlign='center';ctx.fillStyle='rgba(246,242,255,.85)';ctx.shadowColor='rgba(127,240,208,.8)';ctx.shadowBlur=10;ctx.fillText('@知识探索者',1780,1040);ctx.restore();}
+  else{cv.width=1080;cv.height=1440;ctx.drawImage(img,555,0,810,1080,0,0,1080,1440);
+    let g=ctx.createLinearGradient(0,0,0,1440);g.addColorStop(0,'rgba(4,6,16,.35)');g.addColorStop(.28,'rgba(4,6,16,.05)');g.addColorStop(.42,'rgba(4,6,16,.55)');g.addColorStop(.75,'rgba(4,6,16,.7)');g.addColorStop(1,'rgba(4,6,16,.9)');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1440);
+    veil(ctx,540,800,700,470,.95);
+    pill(ctx,C.pill,540,470,34);letters(ctx,540,680,190,40);title(ctx,540,1010,250);hook(ctx,540,1140,64);
+    ctx.save();ctx.font='700 30px '+SER;ctx.textAlign='center';ctx.fillStyle='rgba(246,242,255,.85)';ctx.shadowColor='rgba(127,240,208,.8)';ctx.shadowBlur=10;ctx.fillText('@知识探索者',540,1370);ctx.restore();}
+  return true;}
+function txtLine(ctx,x,y,size){ctx.save();ctx.font=`900 ${size}px ${SER}`;ctx.textAlign='left';const a=C.line1+'，'+C.hook[0],b=C.hook[1];const wa=ctx.measureText(a).width,wb=ctx.measureText(b).width;const x0=x-(wa+wb)/2;ctx.fillStyle='#f6f2ff';ctx.shadowColor='rgba(0,0,0,.8)';ctx.shadowBlur=12;ctx.fillText(a,x0,y);ctx.fillStyle=C.hi;ctx.shadowColor=C.hi;ctx.shadowBlur=24;ctx.fillText(b,x0+wa,y);ctx.restore();}
+</script></body></html>

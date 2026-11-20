@@ -1,0 +1,1 @@
+(sed "s/const VIO='#b89bff',CRIM='#ff6fa8',GOLD='#ffd27a',MAG='#ff9fd0',ICE='#6ff0dc'/const VIO='#b48cff',CRIM='#ff5a8a',GOLD='#ffd06a',MAG='#ff9ad0',ICE='#6ee8ff'/" ../pig/head.js; cat ../pig/extra.js ../pig/caps.js pre.js rig.js chars.js scene.js ../pig/tail.js) > main.js && node --check main.js

@@ -88,6 +88,12 @@ def main():
         except Exception as e:
             log(f"  下载失败：{e}，下次再试")
             continue
+        # 有封面就一起下载
+        if v.get("cover"):
+            try:
+                download(v["cover"], os.path.join(SAVE_DIR, os.path.basename(v["cover"])))
+            except Exception as e:
+                log(f"  封面下载失败：{e}")
         # 文案、话题标签存成同名 txt，发抖音时直接复制
         caption = v.get("caption", "")
         tags = " ".join(f"#{t}" for t in v.get("tags", []))

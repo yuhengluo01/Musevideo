@@ -30,3 +30,9 @@ B(n)=(n-1)*2.6666 秒。开头 0–8 秒（B1–B4）一笔笔画出主角 → D
 6. 封面：改 cover.html 第 3 行 `const C={letters:[[字,色,小标签],...],title:'四字主标题',grad:[...],glow,pill:'人间动物志 · 第N期',pillCol,line1:'你身边',hook:['有没有','XXX？'],hi}`；改 bgs.py 里 `draw(t)` 选一个没有大字/冲击波的画面、两组 camS 覆盖值（横版/竖版）；`python3 bgs.py && python3 coverrender.py 前缀` → 前缀_封面_横版.png / 前缀_封面_竖版3比4.png。
 7. 推送：见仓库根目录规则——mp4 → `videos/YYYY-MM-DD-拼音.mp4`，竖版封面 → `videos/YYYY-MM-DD-拼音-cover.png`，`videos.json` 的 videos 数组末尾追加 {id,file,cover,title,caption,tags(3个，不带#),date}，不删旧条目；commit 后 push 到 main；单文件 <100MB。
 8. 更新 `tools/series_state.json`（done 里加上，queue 里删掉）并一起提交。
+
+## 快捷方式（第五期起）
+- `common_tail.js`：通用画面骨架（背景/镜头/冲击波/高潮放射光/HUD/标题/15句字幕/片尾卡）。每期只需写 `ep.js`：定义 `EP` 配置（name/en/epn/acc/grad/kw/words/cams/sky/caps/tags/cl/endCap）和 `epWorld(S)`（画角色、道具、气泡、bigText 大字，并设置 `FOC=[x,y]` 为主角焦点）。
+- 在 ep 目录里 `bash ../mk.sh` = 合成 scene.js（ep.js + common_tail.js）+ build 检查 + 抽 48 帧拼 sheet.jpg；`bash ../mk.sh 9.0,17.8` 只抽指定时间。
+- 例子：examples/ep5_tizuiyang.js（替罪羊+黑锅叠罗汉）、ep6_jingdizhiwa.js（井底之蛙+井的剖面）、ep7_ciwei.js（刺猬+刺的炸开）、ep8_tiegongji.js（铁公鸡+硬币堆），及各自 epN_audio.py。
+- 坑：chars.js 的 bunny/ox/tiger 在 a≤.01 时返回 null，用 `||{hx,hy}` 兜底；配角 keyframe 想在某段隐身，要在出场前再加一帧 a:0，否则会慢慢淡入。

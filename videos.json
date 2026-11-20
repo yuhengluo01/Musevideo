@@ -217,6 +217,162 @@
         "星座性格"
       ],
       "date": "2026-11-07"
+    },
+    {
+      "id": "2026-11-11-shengxiao-shu",
+      "file": "videos/2026-11-11-shengxiao-shu.mp4",
+      "cover": "videos/2026-11-11-shengxiao-shu-cover.png",
+      "title": "属鼠的人：机灵敏锐，最会过日子🐭",
+      "caption": "反应快、嗅觉灵，危险还没来就先察觉；会存钱会规划，关键时刻还特别能扛。你身边属鼠的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属鼠",
+        "生肖性格"
+      ],
+      "date": "2026-11-11"
+    },
+    {
+      "id": "2026-11-11-shengxiao-niu",
+      "file": "videos/2026-11-11-shengxiao-niu.mp4",
+      "cover": "videos/2026-11-11-shengxiao-niu-cover.png",
+      "title": "属牛的人：勤恳踏实，倔起来九头牛拉不回🐂",
+      "caption": "默默干活不喊累，有担当、靠得住，就是认准的事谁劝都没用。你身边属牛的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属牛",
+        "生肖性格"
+      ],
+      "date": "2026-11-11"
+    },
+    {
+      "id": "2026-11-09-shengxiao-hu",
+      "file": "videos/2026-11-09-shengxiao-hu.mp4",
+      "cover": "videos/2026-11-09-shengxiao-hu-cover.png",
+      "title": "属虎的人：霸气勇猛，护起人来最凶🐯",
+      "caption": "气场全开、敢打敢冲，看着凶，其实是在守护身后的人。你身边属虎的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属虎",
+        "生肖性格"
+      ],
+      "date": "2026-11-09"
+    },
+    {
+      "id": "2026-11-10-shengxiao-tu",
+      "file": "videos/2026-11-10-shengxiao-tu.mp4",
+      "cover": "videos/2026-11-10-shengxiao-tu-cover.png",
+      "title": "属兔的人：看着软萌，关键时刻比谁都勇🐰",
+      "caption": "机敏灵巧、人见人爱，平时安安静静，真遇到事一点不怂。你身边属兔的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属兔",
+        "生肖性格"
+      ],
+      "date": "2026-11-10"
+    },
+    {
+      "id": "2026-11-09-shengxiao-long",
+      "file": "videos/2026-11-09-shengxiao-long.mp4",
+      "cover": "videos/2026-11-09-shengxiao-long-cover.png",
+      "title": "属龙的人：天生王者，逆鳞碰不得🐲",
+      "caption": "自带威严、志在腾飞，越是风雨越能闯，但千万别触碰TA的逆鳞。你身边属龙的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属龙",
+        "生肖性格"
+      ],
+      "date": "2026-11-09"
+    },
+    {
+      "id": "2026-11-09-shengxiao-she",
+      "file": "videos/2026-11-09-shengxiao-she.mp4",
+      "cover": "videos/2026-11-09-shengxiao-she-cover.png",
+      "title": "属蛇的人：冷静聪明，一出手就是致命一击🐍",
+      "caption": "不声不响看透一切，懂得蜕变、懂得等待，出手又准又狠。你身边属蛇的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属蛇",
+        "生肖性格"
+      ],
+      "date": "2026-11-09"
+    },
+    {
+      "id": "2026-11-09-shengxiao-ma",
+      "file": "videos/2026-11-09-shengxiao-ma.mp4",
+      "cover": "videos/2026-11-09-shengxiao-ma-cover.png",
+      "title": "属马的人：自由奔放，谁也拦不住🐴",
+      "caption": "速度与激情，骨子里不服输，热烈得像一团火，只想往前跑。你身边属马的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属马",
+        "生肖性格"
+      ],
+      "date": "2026-11-09"
+    },
+    {
+      "id": "2026-11-10-shengxiao-yang",
+      "file": "videos/2026-11-10-shengxiao-yang.mp4",
+      "cover": "videos/2026-11-10-shengxiao-yang-cover.png",
+      "title": "属羊的人：温柔善良，骨子里却很坚韧🐑",
+      "caption": "待人温柔、心地善良，看着好说话，倔起来也很有原则。你身边属羊的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属羊",
+        "生肖性格"
+      ],
+      "date": "2026-11-10"
+    },
+    {
+      "id": "2026-11-10-shengxiao-hou",
+      "file": "videos/2026-11-10-shengxiao-hou.mp4",
+      "cover": "videos/2026-11-10-shengxiao-hou-cover.png",
+      "title": "属猴的人：聪明灵活，脑子转得比谁都快🐵",
+      "caption": "机灵好奇、点子最多，遇到难题总有办法，骨子里就是不服输。你身边属猴的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属猴",
+        "生肖性格"
+      ],
+      "date": "2026-11-10"
+    },
+    {
+      "id": "2026-11-11-shengxiao-ji",
+      "file": "videos/2026-11-11-shengxiao-ji.mp4",
+      "cover": "videos/2026-11-11-shengxiao-ji-cover.png",
+      "title": "属鸡的人：守时勤奋，自信敢斗🐓",
+      "caption": "闹钟都没它准，干活最勤快，自信满满，该出头时绝不退缩。你身边属鸡的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属鸡",
+        "生肖性格"
+      ],
+      "date": "2026-11-11"
+    },
+    {
+      "id": "2026-11-09-shengxiao-gou",
+      "file": "videos/2026-11-09-shengxiao-gou.mp4",
+      "cover": "videos/2026-11-09-shengxiao-gou-cover.png",
+      "title": "属狗的人：忠诚守候，一辈子真心🐶",
+      "caption": "认定一个人就守一辈子，护主心切，给出的永远是真心。你身边属狗的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属狗",
+        "生肖性格"
+      ],
+      "date": "2026-11-09"
+    },
+    {
+      "id": "2026-11-12-shengxiao-zhu",
+      "file": "videos/2026-11-12-shengxiao-zhu.mp4",
+      "cover": "videos/2026-11-12-shengxiao-zhu-cover.png",
+      "title": "属猪的人：福气满满，心大才快乐🐷",
+      "caption": "乐观真诚、不记仇，天塌下来先睡一觉，福气都是心大换来的。你身边属猪的是这样吗？",
+      "tags": [
+        "十二生肖",
+        "属猪",
+        "生肖性格"
+      ],
+      "date": "2026-11-12"
     }
   ]
 }

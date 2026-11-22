@@ -36,3 +36,8 @@ B(n)=(n-1)*2.6666 秒。开头 0–8 秒（B1–B4）一笔笔画出主角 → D
 - 在 ep 目录里 `bash ../mk.sh` = 合成 scene.js（ep.js + common_tail.js）+ build 检查 + 抽 48 帧拼 sheet.jpg；`bash ../mk.sh 9.0,17.8` 只抽指定时间。
 - 例子：examples/ep5_tizuiyang.js（替罪羊+黑锅叠罗汉）、ep6_jingdizhiwa.js（井底之蛙+井的剖面）、ep7_ciwei.js（刺猬+刺的炸开）、ep8_tiegongji.js（铁公鸡+硬币堆），及各自 epN_audio.py。
 - 坑：chars.js 的 bunny/ox/tiger 在 a≤.01 时返回 null，用 `||{hx,hy}` 兜底；配角 keyframe 想在某段隐身，要在出场前再加一帧 a:0，否则会慢慢淡入。
+
+## 当代人图鉴（第十七期起）
+- 主角用 rig.js 火柴人：`kfS(KP,T)` + `drawStick(po,t,col,prog)`（SP 参数 lean/hd/fax/fay/bax/bay/exp/sq），开头 prog 0→1 一笔笔画出；配角仍用 chars.js。
+- EP 里加 `series:'当代人图鉴', slogan:'每种状态，都是一种活法'`，common_tail 会改 HUD/标题/片尾卡。
+- 例子：examples/ep17_taohao.js（讨好型人格）、ep18_aoye.js（报复性熬夜+时钟道具+手机 phone(G,a)）。

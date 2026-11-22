@@ -39,14 +39,14 @@ window.draw=function(t){t0g=t;
   if(hit>0){ctx.save();ctx.globalCompositeOperation='lighter';ctx.fillStyle=`rgba(240,235,255,${.32*hit*hit})`;ctx.fillRect(0,0,W,H);ctx.restore();}
   chroma(hit*15);
   for(const k of INVERT){if(t>=k&&t<k+.067)invertFrame();}
-  const hud=seg(t,DROP+.6,DROP+1.2)*(1-seg(t,B(11)+.6,B(11)+1.2));if(hud>0&&!window.NOCAP){ctx.save();ctx.globalAlpha=hud*.9;glow(Q([71,100],[64,84],[76,66],6),1,A,2,1,6,false);ctx.textAlign='left';ctx.fillStyle=WHITE;ctx.font='600 26px '+SER;ctx.fillText('人间动物志 · '+EP.name,104,76);ctx.fillStyle='rgba(246,242,255,.65)';ctx.font='500 21px '+SER;ctx.fillText(EP.epn+' · 每种人，都是一种动物',104,104);ctx.restore();}
+  const hud=seg(t,DROP+.6,DROP+1.2)*(1-seg(t,B(11)+.6,B(11)+1.2));if(hud>0&&!window.NOCAP){ctx.save();ctx.globalAlpha=hud*.9;glow(Q([71,100],[64,84],[76,66],6),1,A,2,1,6,false);ctx.textAlign='left';ctx.fillStyle=WHITE;ctx.font='600 26px '+SER;ctx.fillText((EP.series||'人间动物志')+' · '+EP.name,104,76);ctx.fillStyle='rgba(246,242,255,.65)';ctx.font='500 21px '+SER;ctx.fillText(EP.epn+' · '+(EP.slogan||'每种人，都是一种动物'),104,104);ctx.restore();}
   if(!window.NOCAP){const s2=ctx.createRadialGradient(TX,450,0,TX,450,480);s2.addColorStop(0,'rgba(4,4,10,.76)');s2.addColorStop(.6,'rgba(4,4,10,.5)');s2.addColorStop(1,'rgba(4,4,10,0)');ctx.save();ctx.translate(TX,450);ctx.scale(1.25,.8);ctx.translate(-TX,-450);ctx.fillStyle=s2;ctx.fillRect(TX-480,-30,960,960);ctx.restore();}
   ctx.save();ctx.translate(sh.x*.35,sh.y*.35);
   const H2=n=>B(n)+BAR/2,C=EP.caps,TG=EP.tags;
   caption(t,.05,H2(1),C[0]);caption(t,H2(1),B(2),C[1]);caption(t,B(2),H2(2),C[2]);caption(t,H2(2),B(3),C[3]);caption(t,B(3),DROP-.03,C[4]);
   if(!window.NOCAP&&t>=DROP&&t<B(5)){const a=win(t,DROP,B(5),.03,.3),k=1+.5*(1-eOut(seg(t,DROP,DROP+.35)));ctx.save();ctx.globalAlpha=a;ctx.textAlign='center';ctx.translate(TX,470);ctx.scale(k,k);
     ctx.font='600 28px '+SER;ctx.fillStyle=WHITE;ctx.letterSpacing='10px';ctx.fillText(EP.en,5,-140);ctx.letterSpacing='0px';const n=[...EP.name].length;ctx.font='900 '+(n>3?140:170)+'px '+SER;const gg=ctx.createLinearGradient(-280,0,280,0);EP.grad.forEach((c,i)=>gg.addColorStop(i/(EP.grad.length-1),c));ctx.fillStyle=gg;ctx.shadowColor=EP.glowC;ctx.shadowBlur=34;ctx.fillText(EP.name,0,50);ctx.shadowBlur=0;
-    ctx.font='500 26px '+SER;ctx.fillStyle='rgba(246,242,255,.9)';ctx.fillText('人间动物志 · '+EP.epn,0,104);ctx.font='500 24px '+SER;ctx.fillStyle=EP.kwCol;ctx.fillText(EP.kw,0,144);ctx.restore();}
+    ctx.font='500 26px '+SER;ctx.fillStyle='rgba(246,242,255,.9)';ctx.fillText((EP.series||'人间动物志')+' · '+EP.epn,0,104);ctx.font='500 24px '+SER;ctx.fillStyle=EP.kwCol;ctx.fillText(EP.kw,0,144);ctx.restore();}
   caption(t,B(5),H2(5),C[5],TG[0]);caption(t,H2(5),B(6),C[6],TG[0]);
   caption(t,B(6),H2(6),C[7],TG[1]);caption(t,H2(6),B(7),C[8],TG[1]);
   caption(t,B(7),H2(7),C[9],TG[2]);caption(t,H2(7),B(8),C[10],TG[2]);
@@ -57,6 +57,6 @@ window.draw=function(t){t0g=t;
   caption(t,B(11),27.6,EP.endCap);
   ctx.restore();
   const vg=ctx.createRadialGradient(W/2,H/2,H*.35,W/2,H/2,W*.62);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.55)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
-  if(window.boyCard)boyCard(ctx,t,27.45,{accent:A,x:735,y:540,sub:'@知识探索者 · 人间动物志'});
+  if(window.boyCard)boyCard(ctx,t,27.45,{accent:A,x:735,y:540,sub:'@知识探索者 · '+(EP.series||'人间动物志')});
   ctx.save();ctx.globalAlpha=.06;ctx.globalCompositeOperation='overlay';ctx.drawImage(NOISE[Math.floor(t*30)%4],0,0,W,H);ctx.restore();
 };

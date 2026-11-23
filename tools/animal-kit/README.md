@@ -41,3 +41,7 @@ B(n)=(n-1)*2.6666 秒。开头 0–8 秒（B1–B4）一笔笔画出主角 → D
 - 主角用 rig.js 火柴人：`kfS(KP,T)` + `drawStick(po,t,col,prog)`（SP 参数 lean/hd/fax/fay/bax/bay/exp/sq），开头 prog 0→1 一笔笔画出；配角仍用 chars.js。
 - EP 里加 `series:'当代人图鉴', slogan:'每种状态，都是一种活法'`，common_tail 会改 HUD/标题/片尾卡。
 - 例子：examples/ep17_taohao.js（讨好型人格）、ep18_aoye.js（报复性熬夜+时钟道具+手机 phone(G,a)）。
+
+## 批量生成（第十九期起）
+- `specs.py` 每期一个 dict（台词/字幕/姿势 M、Z/道具 prop JS），`gen_skel.js.tpl` 是通用 ep.js 骨架；`python3 gen_eps.py [拼音...]` 生成 ep_<拼音>/ep.js（不存在则先 cp template），然后照常 `bash ../mk.sh` 检查、改 audio.py、`bash ../rend.sh` 渲染。
+- 例子：examples/ep19_yidubuhui.js（已读不回+未回复计数）、ep20_neihao.js（思绪毛线团）、ep21_xianyanbao.js（聚光灯+墨镜+音符）、ep22_shekong.js（保护罩）、ep23_juanwang.js（书桌电脑+皇冠）。

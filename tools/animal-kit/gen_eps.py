@@ -9,7 +9,7 @@ def caps(rows):
         out.append([[[a,0]],[[x,i] for x,i in b]])
     return out
 def ep_js(s):
-    EP=dict(series='当代人图鉴',slogan='每种状态，都是一种活法',name=s['name'],en=s['en'],epn=s['epn'],acc=s['pc'],grad=s['grad'],glowC=s['glowC'],kwCol=s['kwCol'],kw=s['kw'],slamCol=s['slamCol'],words=s['words'],
+    EP=dict(series=s.get('series','当代人图鉴'),slogan=s.get('slogan','每种状态，都是一种活法'),name=s['name'],en=s['en'],epn=s['epn'],acc=s['pc'],grad=s['grad'],glowC=s['glowC'],kwCol=s['kwCol'],kw=s['kw'],slamCol=s['slamCol'],words=s['words'],
         cams=None,sky=None,caps=caps(s['caps']),tags=None,cl=s['cl'],endCap=caps([s['endCap']])[0])
     ej=J(EP)
     ej=ej.replace('"cams": null','cams:CAMS').replace('"sky": null','sky:'+s['sky']).replace('"tags": null',"tags:[['01',%s,PC],['02',%s,RED],['03',%s,GOLD],['04',%s,'#a0a8b8']]"%tuple(J(x) for x in s['tags']))

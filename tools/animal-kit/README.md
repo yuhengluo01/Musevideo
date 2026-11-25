@@ -45,3 +45,8 @@ B(n)=(n-1)*2.6666 秒。开头 0–8 秒（B1–B4）一笔笔画出主角 → D
 ## 批量生成（第十九期起）
 - `specs.py` 每期一个 dict（台词/字幕/姿势 M、Z/道具 prop JS），`gen_skel.js.tpl` 是通用 ep.js 骨架；`python3 gen_eps.py [拼音...]` 生成 ep_<拼音>/ep.js（不存在则先 cp template），然后照常 `bash ../mk.sh` 检查、改 audio.py、`bash ../rend.sh` 渲染。
 - 例子：examples/ep19_yidubuhui.js（已读不回+未回复计数）、ep20_neihao.js（思绪毛线团）、ep21_xianyanbao.js（聚光灯+墨镜+音符）、ep22_shekong.js（保护罩）、ep23_juanwang.js（书桌电脑+皇冠）。
+
+## 打工人图鉴（第三十一期起）
+- specs.py 每期 dict 可加 `series`/`slogan` 覆盖（gen_eps.py 已支持），本系列用 `series='打工人图鉴', slogan='每个工位，都有一个故事'`。
+- 例子：examples/ep31_moyu.js（摸鱼+绕圈小鱼+待办纸堆）、ep32_huabing.js（越画越大的饼）、ep33_lizhi.js（灵魂出窍小幽灵）；ep29_huibi.js（后退速度线+虚线边界）、ep30_wanmei.js（版本号+99%进度条）。
+- 坑：prop 里的 const 名别和公共库重名（如 FS 已被占用）。2 核机器，渲染一期约 3.5 分钟，逐期前台渲染。

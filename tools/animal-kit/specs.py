@@ -464,3 +464,179 @@ function propFront(S,G,po){const{t,endF}=S;stepBox(LS,220,GY-470,t,endF*seg(t,2.
   if(t>=CLIMAX-.1&&t<CLIMAX+1.2)sparks(t,CLIMAX-.1,G.hc[0],G.hc[1],28,3,650,.9,GOLD,true);}
 """),
 ]
+
+SW=dict(series='打工人图鉴', slogan='每个工位，都有一个故事')
+SPECS += [
+dict(py='zhouyi', ep=34, **SW, name='周一综合征', en='MONDAY BLUES', epn='第三十四期', pc='#5ae0c8',
+  grad=['#ffffff','#d0fff4','#40d0b8'], glowC='rgba(90,224,200,.85)', kwCol='rgba(222,255,248,.92)', slamCol='#a8f0e0',
+  kw='起床困难 · 周一宕机 · 自带缓冲 · 越拖越累', words=['疲惫','抗拒','拖延','崩溃'],
+  sky=SKY("['#04121a','#0e3a48','#40c8b8']","['#040c10','#0e2428','#1e4850']","['#06141a','#2a6a70','#d0fff4']"),
+  M="{lean:.08,hd:.3,fax:30,fay:110,bax:-30,bay:110}", Z="{lean:.1,hd:.4,fax:20,fay:-60,bax:-20,bay:-60,exp:5}", E1='5', E2='5', EMK='5', TEVIL='0', BEXP='1',
+  MKA="[{fax:100,fay:-40,exp:4},{hd:.45},{hd:.5,lean:.12}]",
+  tags=['起床困难','周一宕机','自带缓冲','越拖越累'],
+  caps=[('有一种病',[('每周',0),('发作一次',1)]),('周日晚上',[('开始',0),('心慌',1)]),('闹钟响了',[('五',0),('遍',1)]),('人到了工位',[('魂',0),('还在床上',1)]),('这就是',[('周一综合征',1)]),
+        ('咖啡',[('续了',0),('三杯',1)]),('打开电脑',[('发呆',0),('一小时',1)]),
+        ('周会',[('一开',0),('就是半天',1)]),('他',[('原地',0),('宕机',1)]),
+        ('好的一面',[('给自己',0),('缓冲时间',1)]),('慢热',[('但',0),('后劲足',1)]),
+        ('坏的一面',[('周一的丧',0),('拖垮一整周',1)]),('越拖',[('越',0),('累',1)]),
+        ('不是周一太难',[('是周末',0),('没休息好',1)]),('给周一',[('一点',0),('小期待',1)])],
+  cl=['周一快乐','元气开工'], endCap=('好好休息',[('才能',0),('好好上班',1)]),
+  tx=dict(i1='（闹钟第五遍）',i2='早会九点开始哦~',i3='再睡五分钟…',i4='周一早呀！',i5='早…（魂未到账）',pv='度日如年',pvi=1,
+     lab1=['咖啡×3','发呆','周会'],lab1c='#5ae0c8',mk=['续命中…','电脑开了，我没开','（眼皮打架）'],
+     w0=['b','你看起来好困啊'],w1=['t','周一要有精神！'],lk='系统…加载中…',lkBig='身体上线，大脑未开机',
+     j0='先缓缓，慢慢进状态~',j1='你下午效率好高！',stBig='慢热开机，后劲十足',
+     lab4=['拖延','烦躁','周二也丧'],s0='怎么…才周一',s1='这周的活还没动？',slBig='周一一丧，一周全垮',
+     d1='……为什么每周都这样',d2='给周一一点期待！',e1='早上好呀！',e2='状态不错！'),
+  prop=STEPBOX+r"""
+const ZS=[[2.67,'周日 23:59',0],[2.85,'周一 07:00',1],[4.45,'闹钟 ×5',1],[5.95,'迟到 倒计时',1],[6.4,'电量 5%',1],[DROP,'周一模式 ON',1],[MK[0],'咖啡 ×3',0],[MK[1],'发呆 1h',1],[MK[2],'周会 2h',1],[B(6),'大脑 未开机',1],[B(7),'状态 回升',2],[B(8),'周二 也丧',1],[SNAPS[1],'待办 ×28',1],[CLIMAX,'元气 满格',2]];
+function calCard(x,y,a,t){if(a<=.01)return;const sun=t<2.85,gold=t>=CLIMAX||(t>=B(7)&&t<B(8));const col=gold?GOLD:sun?'#ffcf6a':PC;const fl=t>=2.85&&t<3.15?Math.abs(Math.cos(seg(t,2.85,3.15)*Math.PI)):1;
+  ctx.save();ctx.translate(x,y);ctx.scale(1,fl);ctx.translate(-x,-y);ctx.globalAlpha=a*.92;ctx.fillStyle='#0a0c14';ctx.fillRect(x-80,y-90,160,180);ctx.restore();
+  const R=[[x-80,y-90*fl],[x+80,y-90*fl],[x+80,y+90*fl],[x-80,y+90*fl],[x-80,y-90*fl]];glow(R,1,col,2.6,a,12,false);glow([[x-80,y-45*fl],[x+80,y-45*fl]],1,col,2,a,8,false);
+  [-40,40].forEach(d=>glow(circ(x+d,y-92*fl,8,10,12),1,col,2,a,6,false));
+  ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.scale(1,fl);ctx.textAlign='center';ctx.fillStyle='#fff';ctx.font='800 28px '+SER;ctx.fillText(sun?'星期日':'星期一',0,-56);ctx.font='900 92px '+SER;ctx.shadowColor=col;ctx.shadowBlur=18;ctx.fillText(sun?'日':'一',0,60);ctx.restore();}
+function cloud(x,y,a,t){if(a<=.01)return;const P=[];[[-60,0,40],[-15,-22,48],[40,-8,42],[75,10,30]].forEach(c=>{glow(circ(x+c[0],y+c[1],c[2],c[2]*.8,24),1,'#8a98b0',2.4,a,10,false);});
+  for(let i=0;i<7;i++){const p=(t*1.8+i*.37)%1;const xx=x-80+i*26;glow([[xx,y+30+p*90],[xx-4,y+48+p*90]],1,'#8ad8ff',2,a*(1-p),6,false);}}
+function propFront(S,G,po){const{t,endF}=S;stepBox(ZS,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  calCard(G.hc[0]-260,G.hc[1]-120,endF*seg(t,2.5,2.75)*(1-seg(t,B(11)-.2,B(11)+.2)),t);
+  const ca=endF*Math.min(1,win(t,2.9,DROP,.2,.1)+win(t,MK[0],B(7)-.1,.2,.2)+win(t,B(8),CLIMAX-.1,.3,.1));cloud(G.hc[0]+10,G.hc[1]-150,ca,t);
+  if(t>=CLIMAX&&t<CLIMAX+1.2)sparks(t,CLIMAX,G.hc[0],G.hc[1]-150,26,7,600,.9,GOLD,true);
+  if(t>=CLIMAX+.2){const a=endF*seg(t,CLIMAX+.2,CLIMAX+.6)*(1-seg(t,B(11)-.2,B(11)+.3));const x=G.hc[0]+10,y=G.hc[1]-170;glow(circ(x,y,36,36,24),1,GOLD,3,a,18,false);for(let i=0;i<10;i++){const an=i*TAU/10+t*.6;glow([[x+Math.cos(an)*50,y+Math.sin(an)*50],[x+Math.cos(an)*72,y+Math.sin(an)*72]],1,GOLD,2.4,a,10,false);}}}
+"""),
+
+dict(py='cizhi', ep=35, **SW, name='天天喊辞职', en='ALWAYS QUITTING', epn='第三十五期', pc='#ff6a8a',
+  grad=['#ffffff','#ffd4de','#ff5a7a'], glowC='rgba(255,106,138,.85)', kwCol='rgba(255,228,234,.92)', slamCol='#ffb0c0',
+  kw='嘴上辞职 · 身体诚实 · 情绪出口 · 原地踏步', words=['抱怨','纠结','不甘','原地'],
+  sky=SKY("['#1a0408','#5a1020','#ff5a7a']","['#10060a','#301018','#6a2030']","['#1a0a0e','#8a3a4a','#ffe0e6']"),
+  M="{lean:-.05,hd:-.05,fax:100,fay:-60,bax:-40,bay:60}", Z="{lean:.05,hd:.3,fax:20,fay:60,bax:-20,bay:60,exp:5}", E1='1', E2='5', EMK='1', TEVIL='1', BEXP='1',
+  MKA="[{fax:110,fay:-120},{fax:60,fay:-170,bax:-60,bay:-170},{exp:5,fax:40,fay:60,hd:.3}]",
+  tags=['嘴上辞职','身体诚实','情绪出口','原地踏步'],
+  caps=[('有一种人',[('辞职',0),('挂嘴边',1)]),('早上说',[('老子',0),('不干了',1)]),('中午说',[('明天',0),('就走',1)]),('晚上',[('照常',0),('加班',1)]),('这就是',[('天天喊辞职',1)]),
+        ('辞职信',[('写了',0),('八封',1)]),('一封',[('都没',0),('交',1)]),
+        ('同事',[('都听',0),('腻了',1)]),('老板',[('根本',0),('不信',1)]),
+        ('好的一面',[('情绪',0),('有出口',1)]),('骂完',[('继续',0),('干活',1)]),
+        ('坏的一面',[('喊了三年',0),('原地踏步',1)]),('别人',[('早就',0),('跳槽了',1)]),
+        ('真正想走的人',[('早就',0),('在准备了',1)]),('与其喊',[('不如',0),('做',1)])],
+  cl=['少喊一句','多做一步'], endCap=('想走就准备',[('想留就',0),('好好干',1)]),
+  tx=dict(i1='（深吸一口气）',i2='这个需求今天改完',i3='老子不干了！',i4='又来了…',i5='…改完再说吧',pv='口是心非',pvi=0,
+     lab1=['辞职信1','辞职信5','辞职信8'],lab1c='#ff6a8a',mk=['明天就交！','这次是真的！','…下次一定'],
+     w0=['b','你上周也这么说'],w1=['t','辞职信呢？交啊'],lk='我…再考虑考虑',lkBig='辞职喊百遍，工位坐三年',
+     j0='骂完就舒服了~',j1='发泄完继续冲！',stBig='嘴上辞职，身体敬业',
+     lab4=['原地踏步','错过机会','越来越烦'],s0='我是不是…走不掉了',s1='我下周去新公司了',slBig='喊得越响，走得越难',
+     d1='……我到底想要什么',d2='开始准备！',e1='有计划了！',e2='加油！'),
+  prop=STEPBOX+r"""
+const QS=[[2.67,'喊辞职 ×0',0],[2.85,'需求 +1',1],[4.45,'喊辞职 ×1',1],[5.95,'喊辞职 ×99',1],[6.4,'仍在职 ✓',0],[DROP,'辞职嘴炮 ON',1],[MK[0],'辞职信 ×1',0],[MK[1],'辞职信 ×5',0],[MK[2],'辞职信 ×8',1],[B(6),'已提交 0',1],[B(7),'情绪 已释放',2],[B(8),'在职 3年',1],[SNAPS[1],'同事 已跳槽',1],[CLIMAX,'计划 已启动',2]];
+function letter(x,y,s,a,col,txt,rot){if(a<=.01)return;ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.scale(s,s);ctx.globalAlpha=a*.92;ctx.fillStyle='#140810';ctx.fillRect(-75,-48,150,96);ctx.restore();
+  const T=(px,py)=>{const c=Math.cos(rot),sn=Math.sin(rot);return[x+(px*c-py*sn)*s,y+(px*sn+py*c)*s];};
+  glow([T(-75,-48),T(75,-48),T(75,48),T(-75,48),T(-75,-48)],1,col,2.6,a,12,false);glow([T(-75,-48),T(0,6),T(75,-48)],1,col,2,a,8,false);
+  ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.rotate(rot);ctx.scale(s,s);ctx.font='900 30px '+SER;ctx.textAlign='center';ctx.fillStyle='#fff';ctx.shadowColor=col;ctx.shadowBlur=14;ctx.fillText(txt,0,36);ctx.restore();}
+function propFront(S,G,po){const{t,endF}=S;stepBox(QS,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const n=t<MK[0]?0:t<MK[1]?1:t<MK[2]?5:8;const pa=endF*(1-seg(t,SLAM-.1,SLAM+.1))*(t<CLIMAX?1:0);
+  for(let i=0;i<n;i++){letter(RX-250+Math.sin(i*2.1)*14,GY-30-i*24,.75,pa*eBack(seg(t,MK[Math.min(2,i?(i<5?1:2):0)],MK[Math.min(2,i?(i<5?1:2):0)]+.2)),'#ff9ab0','辞职信',Math.sin(i*1.7)*.12);}
+  const ha=endF*Math.min(1,win(t,4.45,5.85,.08,.15)+win(t,MK[0],B(6)-.1,.08,.15)+win(t,WAVES[1],B(7),.1,.2));
+  const gold=t>=CLIMAX;if(!gold)letter(G.fh[0]+30,G.fh[1]-50,1,ha,PC,'辞职信',-.15+Math.sin(t*9)*.05*(t>=4.45&&t<5.85?1:0));
+  if(t>=SLAM-.1&&t<SLAM+1)shards(t,SLAM-.1,RX-250,GY-120,endF,51,PC,24,800);
+  if(gold){const a=endF*seg(t,CLIMAX,CLIMAX+.25)*(1-seg(t,B(11)-.2,B(11)+.3));letter(G.fh[0]+30,G.fh[1]-60,1.15,a,GOLD,'计划书',-.1);if(t<CLIMAX+1.2)sparks(t,CLIMAX,G.fh[0]+30,G.fh[1]-60,24,9,550,.9,GOLD,true);}}
+"""),
+
+dict(py='zhundian', ep=36, **SW, name='准点下班', en='CLOCK OUT ON TIME', epn='第三十六期', pc='#7aff9a',
+  grad=['#ffffff','#d8ffe0','#5ae880'], glowC='rgba(122,255,154,.85)', kwCol='rgba(228,255,234,.92)', slamCol='#b0f0c0',
+  kw='到点就走 · 绝不加班 · 生活平衡 · 被说不上进', words=['眼色','内疚','孤立','压力'],
+  sky=SKY("['#04140a','#0e4020','#5ae880']","['#040c06','#0e2414','#1e4828']","['#06140a','#2a6a3a','#d8ffe0']"),
+  M="{lean:-.04,hd:-.05,fax:70,fay:20,bax:40,bay:60}", Z="{lean:.05,hd:.2,fax:40,fay:20,bax:-40,bay:30,exp:5}", E1='0', E2='0', EMK='0', TEVIL='1', BEXP='4',
+  MKA="[{fax:110,fay:-60},{fax:90,fay:20},{fax:60,fay:-170,bax:-60,bay:-170}]",
+  tags=['到点就走','绝不加班','生活平衡','被说不上进'],
+  caps=[('有一种人',[('六点',0),('准时消失',1)]),('五点五十',[('电脑',0),('关机',1)]),('五十九分',[('包已',0),('背好',1)]),('六点整',[('人',0),('没了',1)]),('这就是',[('准点下班',1)]),
+        ('无效会议',[('不',0),('参加',1)]),('下班消息',[('明天',0),('再回',1)]),
+        ('老板',[('眼神',0),('凝视',1)]),('他',[('照走',0),('不误',1)]),
+        ('好的一面',[('生活',0),('有滋有味',1)]),('白天',[('效率',0),('拉满',1)]),
+        ('坏的一面',[('被说',0),('不上进',1)]),('加薪',[('总轮',0),('不到他',1)]),
+        ('准点下班',[('不是',0),('错',1)]),('高效',[('才是',0),('底气',1)])],
+  cl=['高效工作','准点生活'], endCap=('下班',[('是你的',0),('权利',1)]),
+  tx=dict(i1='（盯着时钟）',i2='晚上一起加个班？',i3='不了，我约了生活',i4='你真走啊？',i5='拜拜~明天见！',pv='归心似箭',pvi=3,
+     lab1=['拒绝内卷','关机','打卡'],lab1c='#7aff9a',mk=['会议？发纪要吧','明天回你~','18:00 打卡！'],
+     w0=['b','领导还没走呢…'],w1=['t','年轻人，要多奋斗'],lk='活干完了，人就该走',lkBig='18:00，准时消失',
+     j0='下班健身，周末旅行~',j1='你活得好精彩！',stBig='白天高效，晚上自由',
+     lab4=['不上进','不加薪','被孤立'],s0='我做错什么了吗…',s1='他天天最后一个走',slBig='准时下班，成了原罪',
+     d1='……准点下班，有错吗',d2='用效率说话！',e1='你好高效！',e2='准时完成！'),
+  prop=STEPBOX+r"""
+const CS=[[2.67,'17:50',0],[2.85,'17:55 关电脑',0],[4.45,'17:59 背包',1],[5.95,'17:59:50',1],[6.4,'18:00 下班！',2],[DROP,'准点模式 ON',0],[MK[0],'会议 已拒绝',0],[MK[1],'消息 明天回',0],[MK[2],'18:00 打卡 ✓',2],[B(6),'老板 凝视中',1],[B(7),'健身 旅行',2],[B(8),'加薪名单 ✗',1],[SNAPS[1],'评价 不上进',1],[CLIMAX,'效率 第一',2]];
+const HR=[[0,17.5],[2.85,17.83],[4.45,17.97],[5.95,17.99],[6.4,18],[DROP,18],[MK[0],17.9],[MK[2],18],[B(8),18],[SNAPS[0],19],[SNAPS[1],20],[SLAM,21],[CLIMAX,18]];
+function hrAt(t){let i=0;while(i<HR.length-1&&HR[i+1][0]<=t)i++;const a=HR[i],b=HR[Math.min(i+1,HR.length-1)];if(a===b)return a[1];return lerp(a[1],b[1],eOut(seg(t,b[0]-.3,b[0])));}
+function clock(x,y,R,a,h,col){if(a<=.01)return;ctx.save();ctx.globalAlpha=a*.9;ctx.fillStyle='#08100a';ctx.beginPath();ctx.arc(x,y,R,0,TAU);ctx.fill();ctx.restore();glow(circ(x,y,R,R,48),1,col,3,a,16,false);
+  for(let i=0;i<12;i++){const an=i*TAU/12;glow([[x+Math.cos(an)*R*.82,y+Math.sin(an)*R*.82],[x+Math.cos(an)*R*.94,y+Math.sin(an)*R*.94]],1,col,i%3?1.6:3,a,6,false);}
+  const ha=(h%12)/12*TAU-Math.PI/2,ma=(h%1)*TAU-Math.PI/2;glow([[x,y],[x+Math.cos(ha)*R*.5,y+Math.sin(ha)*R*.5]],1,'#fff',4,a,10,false);glow([[x,y],[x+Math.cos(ma)*R*.78,y+Math.sin(ma)*R*.78]],1,col,3,a,10,false);dot(x,y,5,'#fff',a);}
+function propFront(S,G,po){const{t,endF}=S;stepBox(CS,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const gold=t>=CLIMAX||(t>=B(7)&&t<B(8)),red=t>=B(8)&&t<CLIMAX;const ka=endF*seg(t,2.5,2.75)*(1-seg(t,B(11)-.2,B(11)+.2));clock(G.hc[0]-250,G.hc[1]-140,78,ka,hrAt(t),gold?GOLD:red?'#ff7a8a':PC);
+  [6.4,MK[2]].forEach(k=>{if(t>=k&&t<k+.9)sparks(t,k,G.hc[0]-250,G.hc[1]-140,22,13,520,.8,PC,true);});
+  const ra=endF*Math.min(1,win(t,6.4,7.6,.1,.2)+win(t,MK[2],B(6)-.1,.1,.2)+win(t,WAVES[1]+.2,B(7),.1,.2));if(ra>.01)for(let i=0;i<6;i++){const y=G.hc[1]+40+i*62,p=(t*2.6+i*.31)%1;const x0=G.hc[0]-110-p*90;glow([[x0,y],[x0-130,y]],1,PC,3,ra*(1-p),10,false);}
+  if(t>=CLIMAX&&t<CLIMAX+1.2)sparks(t,CLIMAX,G.hc[0]-250,G.hc[1]-140,26,3,620,.9,GOLD,true);}
+"""),
+
+dict(py='shuaiguo', ep=37, **SW, name='甩锅侠', en='BLAME SHIFTER', epn='第三十七期', pc='#ff8a5a',
+  grad=['#ffffff','#ffe0d0','#ff7040'], glowC='rgba(255,138,90,.85)', kwCol='rgba(255,236,226,.92)', slamCol='#ffc0a0',
+  kw='甩锅一流 · 推卸责任 · 自保高手 · 没人敢合作', words=['推诿','失信','孤立','背锅'],
+  sky=SKY("['#1a0a04','#5a2410','#ff7040']","['#100806','#301810','#6a3220']","['#1a0e08','#8a4a2a','#ffe4d4']"),
+  M="{lean:-.06,hd:0,fax:110,fay:-30,bax:-60,bay:40}", Z="{lean:-.08,hd:-.1,fax:60,fay:-150,bax:-60,bay:-150,exp:4}", E1='4', E2='4', EMK='1', TEVIL='1', BEXP='1',
+  MKA="[{fax:120,fay:-40},{fax:110,fay:-120},{fax:120,fay:-10,bax:-100,bay:-30}]",
+  tags=['甩锅一流','推卸责任','自保高手','没人敢合作'],
+  caps=[('有一种人',[('出了事',0),('先甩锅',1)]),('方案出错',[('是',0),('设计的锅',1)]),('进度延误',[('是',0),('测试的锅',1)]),('功劳',[('全是',0),('他的',1)]),('这就是',[('甩锅侠',1)]),
+        ('一口锅',[('甩给',0),('同事',1)]),('两口锅',[('甩给',0),('系统',1)]),
+        ('老板',[('追问',0),('责任',1)]),('他',[('一脸',0),('无辜',1)]),
+        ('好的一面',[('自保',0),('能力满分',1)]),('从来',[('不',0),('背锅',1)]),
+        ('坏的一面',[('没人',0),('敢跟他合作',1)]),('锅',[('最后',0),('砸回自己',1)]),
+        ('能甩的是锅',[('甩不掉的是',0),('人品',1)]),('敢担责',[('才',0),('值得信任',1)])],
+  cl=['我的锅','我来背'], endCap=('担当',[('才是',0),('真本事',1)]),
+  tx=dict(i1='（嗯？出bug了？）',i2='这锅谁的？',i3='不关我事啊！',i4='不是你负责的吗？',i5='是…是系统的问题！',pv='推三阻四',pvi=0,
+     lab1=['同事','系统','实习生'],lab1c='#ff8a5a',mk=['是他没说清！','系统崩了！','实习生弄的！'],
+     w0=['b','明明是你写的…'],w1=['t','到底谁负责？'],lk='我…我只是路过',lkBig='锅在天上飞，他在旁边看',
+     j0='反正不是我~',j1='你可真会说…',stBig='甩锅一流，片锅不沾',
+     lab4=['没人合作','被孤立','失去信任'],s0='怎么…都不理我了',s1='跟他合作？算了',slBig='甩出去的锅，终会砸回来',
+     d1='……原来锅一直在我这',d2='这锅，我来背！',e1='有担当！',e2='靠谱！'),
+  prop=STEPBOX+r"""
+const GS=[[2.67,'Bug ×1',0],[2.85,'责任人 ？',1],[4.45,'锅 已甩出',0],[5.95,'锅 → 同事',1],[6.4,'锅 → 系统',1],[DROP,'甩锅模式 ON',1],[MK[0],'甩锅 ×1',0],[MK[1],'甩锅 ×2',0],[MK[2],'甩锅 ×3',1],[B(6),'责任 0%',1],[B(7),'功劳 100%',2],[B(8),'信任 -50',1],[SNAPS[1],'合作 0人',1],[CLIMAX,'担当 +100',2]];
+const PT=[[0,500,200,0],[2.6,500,200,0],[2.85,500,210,1],[4.3,500,210,1],[4.45,790,230,1],[5.8,790,230,1],[5.95,860,GY-380,1],[6.3,860,GY-380,1],[6.4,960,220,.9],[7.6,960,220,.9],[DROP,500,210,1],[MK[0]-.15,500,210,1],[MK[0],640,170,.9],[MK[1],690,200,.9],[MK[2],640,230,.9],[B(6)-.15,640,230,.9],[WAVES[0],860,GY-380,1],[LOCK,760,190,1],[B(7),960,170,.7],[B(8),960,170,.7],[SNAPS[0],860,230,1.2],[SNAPS[1],700,240,1.5],[SLAM,500,GY-720,1.8],[CLIMAX-.05,500,GY-720,1.8],[CLIMAX+.3,250,280,1.5]];
+function ptAt(t){let i=0;while(i<PT.length-1&&PT[i+1][0]<=t)i++;const a=PT[i],b=PT[Math.min(i+1,PT.length-1)];if(a===b)return[a[1],a[2],a[3],0];const p=eOut(seg(t,b[0]-.3,b[0]));const mv=(t>b[0]-.3&&t<b[0])?1:0;return[lerp(a[1],b[1],p),lerp(a[2],b[2],p),lerp(a[3],b[3],p),mv];}
+function pot(x,y,s,a,col,rot,txt){if(a<=.01||s<.05)return;s*=1.4;ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.scale(s,s);ctx.globalAlpha=a*.9;ctx.fillStyle='#120a06';ctx.beginPath();ctx.ellipse(0,0,70,40,0,0,Math.PI);ctx.fill();ctx.restore();
+  const T=(px,py)=>{const c=Math.cos(rot),sn=Math.sin(rot);return[x+(px*c-py*sn)*s,y+(px*sn+py*c)*s];};const B_=[];for(let i=0;i<=20;i++){const u=i/20*Math.PI;B_.push(T(Math.cos(u)*70,Math.sin(u)*40));}
+  glow(B_,1,col,3,a,14,false);glow([T(-80,0),T(80,0)],1,col,3,a,12,false);glow([T(80,0),T(150,-6)],1,col,4,a,10,false);
+  ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.rotate(rot);ctx.scale(s,s);ctx.font='900 40px '+SER;ctx.textAlign='center';ctx.fillStyle='#fff';ctx.shadowColor=col;ctx.shadowBlur=14;ctx.fillText(txt,0,32);ctx.restore();}
+function propFront(S,G,po){const{t,endF}=S;stepBox(GS,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const [x,y,s,mv]=ptAt(t);const gold=t>=CLIMAX;const col=gold?GOLD:(t>=B(7)&&t<B(8))?'#a0a8b8':PC;const pa=endF*(1-seg(t,B(11)-.2,B(11)+.3));
+  if(mv){for(let i=1;i<5;i++){const q=ptAt(t-i*.03);dot(q[0],q[1],6-i,col,pa*.5);}}
+  pot(x,y,s,pa,col,mv?t*14:(t>=SLAM&&t<CLIMAX?Math.PI*.05:Math.sin(t*3)*.08),gold?'担':'锅');
+  if(t>=SLAM&&t<SLAM+1)shards(t,SLAM,500,GY-700,endF,71,PC,22,700);
+  if(t>=CLIMAX+.3&&t<CLIMAX+1.5)sparks(t,CLIMAX+.3,250,280,24,5,520,.9,GOLD,true);}
+"""),
+
+dict(py='heihua', ep=38, **SW, name='职场黑话', en='CORPORATE JARGON', epn='第三十八期', pc='#d08aff',
+  grad=['#ffffff','#f0dcff','#b86aff'], glowC='rgba(208,138,255,.85)', kwCol='rgba(244,232,255,.92)', slamCol='#e0c0ff',
+  kw='张口黑话 · 听不懂人话 · 显得专业 · 沟通全靠猜', words=['迷茫','空洞','误解','尴尬'],
+  sky=SKY("['#10041a','#3a1460','#b86aff']","['#0a0610','#201030','#402060']","['#120a1a','#5a3a8a','#f0dcff']"),
+  M="{lean:-.04,hd:-.08,fax:110,fay:-60,bax:-40,bay:40}", Z="{lean:.04,hd:.15,fax:90,fay:-80,bax:40,bay:60,exp:4}", E1='0', E2='0', EMK='0', TEVIL='0', BEXP='4',
+  MKA="[{fax:120,fay:-100},{fax:90,fay:-20,bax:-90,bay:-20},{fax:110,fay:-150,bax:-110,bay:-150}]",
+  tags=['张口黑话','听不懂人话','显得专业','沟通全靠猜'],
+  caps=[('有一种人',[('开口',0),('全是黑话',1)]),('赋能',[('抓手',0),('闭环',1)]),('颗粒度',[('要',0),('对齐',1)]),('同事听完',[('一脸',0),('懵',1)]),('这就是',[('职场黑话',1)]),
+        ('一句话',[('塞了',0),('五个词',1)]),('每个词',[('都',0),('听不懂',1)]),
+        ('同事',[('疯狂',0),('点头',1)]),('其实',[('一个字',0),('没懂',1)]),
+        ('好的一面',[('听起来',0),('很专业',1)]),('汇报',[('气场',0),('拉满',1)]),
+        ('坏的一面',[('说了半天',0),('等于没说',1)]),('活儿',[('全',0),('干错了',1)]),
+        ('话说得再高级',[('不如',0),('说清楚',1)]),('少点黑话',[('多说',0),('人话',1)])],
+  cl=['少说黑话','多说人话'], endCap=('沟通',[('说人话',0),('最高级',1)]),
+  tx=dict(i1='咳，我来对齐一下',i2='项目进展如何？',i3='我们要打造闭环！',i4='…所以要干嘛？',i5='找准抓手，赋能业务！',pv='不知所云',pvi=3,
+     lab1=['赋能','抓手','闭环'],lab1c='#d08aff',mk=['底层逻辑要打通！','颗粒度再细一点','打出组合拳！'],
+     w0=['b','能…说人话吗？'],w1=['t','具体做什么？'],lk='就是…拉通对齐一下',lkBig='字都认识，连起来不懂',
+     j0='这叫方法论~',j1='听起来好厉害！',stBig='黑话一出，专业拉满',
+     lab4=['误解','返工','尴尬'],s0='为什么…全做错了',s1='我以为你说的是…',slBig='说了半天，等于没说',
+     d1='……原来大家都没听懂',d2='说人话！',e1='这次懂了！',e2='清楚明白！'),
+  prop=STEPBOX+r"""
+const HS=[[2.67,'黑话浓度 10%',0],[2.85,'黑话浓度 30%',0],[4.45,'黑话浓度 60%',1],[5.95,'听懂率 20%',1],[6.4,'黑话浓度 90%',1],[DROP,'黑话模式 ON',1],[MK[0],'赋能 ×1',0],[MK[1],'对齐 ×3',0],[MK[2],'闭环 ×5',1],[B(6),'听懂率 0%',1],[B(7),'气场 满分',2],[B(8),'返工 ×3',1],[SNAPS[1],'返工 ×9',1],[CLIMAX,'听懂率 100%',2]];
+const JW=['赋能','抓手','闭环','对齐','颗粒度','打通','链路','沉淀'];
+function jw(x,y,a,txt,col,sz){if(a<=.01)return;ctx.save();ctx.globalAlpha=a;ctx.font='900 '+sz+'px '+SER;ctx.textAlign='center';ctx.lineWidth=5;ctx.lineJoin='round';ctx.strokeStyle='rgba(6,4,14,.85)';ctx.strokeText(txt,x,y);ctx.fillStyle='#fff';ctx.shadowColor=col;ctx.shadowBlur=16;ctx.fillText(txt,x,y);ctx.restore();}
+function propFront(S,G,po){const{t,endF}=S;stepBox(HS,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const n=t<2.85?0:t<4.45?2:t<6.4?4:6;const oa=endF*seg(t,2.85,3.1)*(1-seg(t,CLIMAX-.05,CLIMAX+.05))*(t>=B(7)&&t<B(8)?.55:1);
+  const col=(t>=B(7)&&t<B(8))?GOLD:(t>=B(8))?'#a0a8b8':PC;
+  for(let i=0;i<n;i++){const an=t*1.1+i*TAU/n;const z=Math.sin(an);const x=G.hc[0]-40+Math.cos(an)*290,y=G.hc[1]-60+z*80;jw(x,y,oa*(z<-.2?.45:1),JW[i],col,38+z*6);}
+  if(t>=CLIMAX-.05&&t<CLIMAX+1)shards(t,CLIMAX-.05,G.hc[0],G.hc[1]-60,endF,81,PC,26,800);
+  if(t>=CLIMAX+.25){const a=endF*seg(t,CLIMAX+.25,CLIMAX+.5)*(1-seg(t,B(11)-.2,B(11)+.3));jw(G.hc[0]-260,G.hc[1]-150,a,'说人话 ✓',GOLD,50);if(t<CLIMAX+1.4)sparks(t,CLIMAX+.25,G.hc[0]-260,G.hc[1]-160,22,4,500,.9,GOLD,true);}}
+"""),
+]

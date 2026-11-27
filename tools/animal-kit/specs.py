@@ -640,3 +640,201 @@ function propFront(S,G,po){const{t,endF}=S;stepBox(HS,220,GY-470,t,endF*seg(t,2.
   if(t>=CLIMAX+.25){const a=endF*seg(t,CLIMAX+.25,CLIMAX+.5)*(1-seg(t,B(11)-.2,B(11)+.3));jw(G.hc[0]-260,G.hc[1]-150,a,'说人话 ✓',GOLD,50);if(t<CLIMAX+1.4)sparks(t,CLIMAX+.25,G.hc[0]-260,G.hc[1]-160,22,4,500,.9,GOLD,true);}}
 """),
 ]
+
+# ===== 打工人图鉴 第39-43期 =====
+SPECS += [
+dict(py='jiamang', ep=39, **SW, name='假装很忙', en='FAKE BUSY', epn='第三十九期', pc='#5ad0ff',
+  grad=['#ffffff','#d4f2ff','#40b8ff'], glowC='rgba(90,208,255,.85)', kwCol='rgba(226,246,255,.92)', slamCol='#a8e0ff',
+  kw='演技满分 · 产出为零 · 没人派活 · 活全堆着', words=['心虚','疲惫','拖延','露馅'],
+  sky=SKY("['#04101a','#0e3458','#40b8ff']","['#040a10','#0e2034','#1e4060']","['#06101a','#2a5a7a','#d4f2ff']"),
+  M="{lean:-.04,hd:.05,fax:90,fay:20,bax:60,bay:30}", Z="{lean:.05,hd:.2,fax:70,fay:-130,bax:-30,bay:60,exp:4}", E1='1', E2='0', EMK='1', TEVIL='1', BEXP='4',
+  MKA="[{fax:60,fay:-150,hd:.1},{fax:40,fay:60,bax:-40,bay:60,hd:-.1},{fax:50,fay:-160,bax:60,bay:30}]",
+  tags=['演技满分','产出为零','没人派活','活全堆着'],
+  caps=[('有一种人',[('永远',0),('很忙',1)]),('老板一来',[('键盘',0),('狂敲',1)]),('抱着文件',[('满场',0),('跑',1)]),('一天下来',[('啥也',0),('没干',1)]),('这就是',[('假装很忙',1)]),
+        ('一会皱眉',[('一会',0),('叹气',1)]),('电话',[('假装',0),('在打',1)]),
+        ('同事',[('想找他',0),('帮忙',1)]),('他',[('没空',0),('没空',1)]),
+        ('好的一面',[('存在感',0),('拉满',1)]),('从来',[('不被',0),('派活',1)]),
+        ('坏的一面',[('真活',0),('全堆着',1)]),('晚上',[('偷偷',0),('补作业',1)]),
+        ('演忙',[('比干活',0),('还累',1)]),('真正去做',[('反而',0),('轻松',1)])],
+  cl=['少演一点','多干一点'], endCap=('忙不忙',[('看产出',0),('不看表演',1)]),
+  tx=dict(i1='（听见脚步声）',i2='最近在忙什么？',i3='忙！忙死了！',i4='能帮我个忙吗？',i5='等我忙完这阵…',pv='装模作样',pvi=1,
+     lab1=['皱眉','叹气','打电话'],lab1c='#5ad0ff',mk=['嗯…这个数据…','唉，好多事啊','喂？对对对…'],
+     w0=['b','帮我看个表格？'],w1=['t','这周做了啥？'],lk='我…在整理思路',lkBig='看着很忙，其实很空',
+     j0='忙碌人设，稳了~',j1='你好辛苦啊！',stBig='忙碌人设，无人打扰',
+     lab4=['进度为0','加班','被拆穿'],s0='怎么…还剩这么多',s1='你这周交了什么？',slBig='演了一天，活还在那',
+     d1='……装忙好累啊',d2='真的开干！',e1='效率好高！',e2='早点下班！'),
+  prop=STEPBOX+r"""
+function DODGE(t,k=180){return -k*eOut(seg(t,B(8)-.3,B(8)))*(1-eOut(seg(t,SLAM+.2,SLAM+.6)));}
+const BZ=[[2.67,'摸鱼中…',0],[2.85,'老板 靠近！',1],[4.45,'切屏 0.1s',1],[5.95,'键盘 狂敲',0],[6.4,'忙碌值 99%',1],[DROP,'假忙模式 ON',1],[MK[0],'皱眉 ×1',0],[MK[1],'叹气 ×3',0],[MK[2],'假电话 ×5',1],[B(6),'实际产出 0',1],[B(7),'存在感 满格',2],[B(8),'真活 堆积',1],[SNAPS[1],'加班 补作业',1],[CLIMAX,'真效率 ON',2]];
+function monitor(x,y,a,col,txt,sub){if(a<=.01)return;ctx.save();ctx.globalAlpha=a*.92;ctx.fillStyle='#060a12';ctx.fillRect(x-105,y-72,210,134);ctx.restore();
+  glow([[x-105,y-72],[x+105,y-72],[x+105,y+62],[x-105,y+62],[x-105,y-72]],1,col,3,a,14,false);glow([[x,y+62],[x,y+96]],1,col,3,a,8,false);glow([[x-55,y+96],[x+55,y+96]],1,col,3,a,8,false);
+  ctx.save();ctx.globalAlpha=a;ctx.textAlign='center';ctx.fillStyle='#fff';ctx.shadowColor=col;ctx.shadowBlur=14;ctx.font='900 36px '+SER;ctx.fillText(txt,x,y-4);ctx.font='700 22px '+SER;ctx.fillText(sub,x,y+36);ctx.restore();}
+function propFront(S,G,po){const{t,endF}=S;stepBox(BZ,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const gold=t>=CLIMAX||(t>=B(7)&&t<B(8)),red=t>=B(8)&&t<CLIMAX;const col=gold?GOLD:red?'#ff7a8a':PC;
+  const txt=t<4.45?'购物车':t>=CLIMAX?'已完成 ✓':red?'进度 0%':'Excel 表格';const sub=t<4.45?'（摸鱼中）':t>=CLIMAX?'真干活，真高效':red?'截止：今天':'假装加载中…';
+  const ma=endF*seg(t,2.5,2.75)*(1-seg(t,B(11)-.2,B(11)+.2));const fl=t>=4.45&&t<4.6?.3:1;monitor(G.hc[0]-260+DODGE(t),G.hc[1]-150,ma*fl,col,txt,sub);
+  const ty=endF*Math.min(1,win(t,5.95,7.6,.05,.2)+win(t,MK[0],B(6)-.1,.1,.2)+win(t,B(8),SLAM-.1,.1,.1));
+  if(ty>.01){const r=rng(Math.floor(t*14));for(let i=0;i<5;i++){const x=G.fh[0]-20+r()*80,y=G.fh[1]-20-r()*70;ctx.save();ctx.globalAlpha=ty*r();ctx.font='900 30px '+SER;ctx.fillStyle='#fff';ctx.shadowColor=col;ctx.shadowBlur=12;ctx.textAlign='center';ctx.fillText(['哒','啪','嗒'][i%3],x,y);ctx.restore();}}
+  const sw=endF*Math.min(1,win(t,2.85,4.4,.1,.1)+win(t,SNAPS[0],CLIMAX-.2,.1,.2));if(sw>.01)[0,1].forEach(i=>{const p=(t*1.4+i*.5)%1;dot(G.hc[0]+50+i*14,G.hc[1]-30+p*50,5,'#8ad8ff',sw*(1-p));});
+  if(t>=CLIMAX&&t<CLIMAX+1.2)sparks(t,CLIMAX,G.hc[0]-260,G.hc[1]-150,26,3,620,.9,GOLD,true);}
+"""),
+
+dict(py='zhuangsi', ep=40, **SW, name='群里装死', en='GROUP CHAT GHOST', epn='第四十期', pc='#6affc4',
+  grad=['#ffffff','#d4ffec','#40e8a8'], glowC='rgba(106,255,196,.85)', kwCol='rgba(226,255,242,.92)', slamCol='#a8f0d4',
+  kw='群里潜水 · 红包秒抢 · 麻烦绕道 · 最后被点名', words=['心虚','逃避','被点名','背锅'],
+  sky=SKY("['#04140e','#0e4430','#40e8a8']","['#040c08','#0e2418','#1e4a34']","['#06140e','#2a6a50','#d4ffec']"),
+  M="{lean:-.02,hd:.28,fax:70,fay:20,bax:40,bay:60}", Z="{lean:.05,hd:.35,fax:70,fay:20,bax:40,bay:60,exp:5}", phone=True, E1='5', E2='5', EMK='5', TEVIL='1', BEXP='4',
+  MKA="[{exp:5},{exp:5,hd:.4},{exp:4,fax:110,fay:-140,hd:0}]",
+  tags=['群里潜水','红包秒抢','麻烦绕道','最后被点名'],
+  caps=[('有一种人',[('群里',0),('装死',1)]),('领导一问',[('全员',0),('潜水',1)]),('谁来接活',[('没人',0),('吱声',1)]),('一发红包',[('秒',0),('抢',1)]),('这就是',[('群里装死',1)]),
+        ('@所有人',[('假装',0),('没看见',1)]),('消息99+',[('就是',0),('不点开',1)]),
+        ('领导',[('再次',0),('艾特',1)]),('群里',[('一片',0),('寂静',1)]),
+        ('好的一面',[('麻烦活',0),('不沾身',1)]),('精力',[('留给',0),('自己',1)]),
+        ('坏的一面',[('最后',0),('被点名',1)]),('活儿',[('全砸',0),('你手里',1)]),
+        ('装死',[('躲得过',0),('初一',1)]),('一句收到',[('没那么',0),('难',1)])],
+  cl=['回句收到','也是担当'], endCap=('该回就回',[('该拒',0),('就拒',1)]),
+  tx=dict(i1='（叮叮叮叮…）',i2='@所有人 谁有空？',i3='（假装没看见）',i4='你看群了吗？',i5='手机…没电了',pv='鸦雀无声',pvi=0,
+     lab1=['@所有人','99+','红包'],lab1c='#6affc4',mk=['（潜水中）','（就不点开）','红包？抢到了！'],
+     w0=['b','群里在叫你…'],w1=['t','怎么都不说话？'],lk='我…信号不好',lkBig='群里五十人，没一个在线',
+     j0='躲过一劫~',j1='你好会躲哦！',stBig='装死一时，清净一时',
+     lab4=['被点名','背锅','失信'],s0='怎么…又是我',s1='既然你在，那就你来',slBig='装死到最后，活还是你的',
+     d1='……躲不掉的啊',d2='收到，我来！',e1='靠谱！',e2='谢谢你！'),
+  prop=STEPBOX+r"""
+function DODGE(t,k=180){return -k*eOut(seg(t,B(8)-.3,B(8)))*(1-eOut(seg(t,SLAM+.2,SLAM+.6)));}
+const QZ=[[2.67,'工作群(52)',0],[2.85,'@所有人',1],[4.45,'群消息 99+',1],[5.95,'@你',1],[6.4,'已读 不回',0],[DROP,'装死模式 ON',1],[MK[0],'免打扰 ✓',0],[MK[1],'谁接？无人',1],[MK[2],'红包 秒抢',2],[B(6),'群 静默',1],[B(7),'麻烦 绕道',2],[B(8),'@你 ×3',1],[SNAPS[1],'被点名',1],[CLIMAX,'收到 ✓',2]];
+const MSGS=[[2.85,'领导','@所有人 谁有空？'],[4.45,'领导','这个谁负责？'],[5.95,'同事','@你 看一下'],[MK[0],'领导','在吗在吗'],[MK[2],'行政','[红包] 恭喜发财'],[B(6),'领导','怎么没人说话'],[B(8),'领导','@你 你来吧'],[SNAPS[1],'领导','@你 @你'],[CLIMAX,'我','收到，我来！']];
+function chatP(x,y,a,col,t){if(a<=.01)return;const w=280,h=262;ctx.save();ctx.globalAlpha=a*.93;ctx.fillStyle='#06100c';ctx.beginPath();ctx.roundRect(x-w/2,y-h/2,w,h,22);ctx.fill();ctx.restore();
+  ctx.save();ctx.globalAlpha=a;ctx.strokeStyle=col;ctx.lineWidth=3;ctx.shadowColor=col;ctx.shadowBlur=14;ctx.beginPath();ctx.roundRect(x-w/2,y-h/2,w,h,22);ctx.stroke();ctx.beginPath();ctx.moveTo(x-w/2,y-h/2+48);ctx.lineTo(x+w/2,y-h/2+48);ctx.stroke();
+  ctx.font='800 24px '+SER;ctx.textAlign='center';ctx.fillStyle='#fff';ctx.fillText('工作群(52)',x,y-h/2+33);
+  const L=MSGS.filter(m=>t>=m[0]).slice(-3);L.forEach((m,i)=>{const me=m[1]=='我';const yy=y-h/2+84+i*64;const p=eBack(seg(t,m[0],m[0]+.2));ctx.save();ctx.translate(x,yy);ctx.scale(p,p);
+    ctx.font='600 17px '+SER;ctx.textAlign=me?'right':'left';ctx.fillStyle='rgba(255,255,255,.6)';ctx.shadowBlur=0;ctx.fillText(m[1],me?w/2-18:-w/2+18,-14);
+    ctx.font='800 22px '+SER;const tw=ctx.measureText(m[2]).width+24;const bx=me?w/2-18-tw:-w/2+18;ctx.fillStyle=me?'rgba(255,210,122,.25)':(m[2].includes('@你')?'rgba(255,90,110,.3)':'rgba(255,255,255,.1)');ctx.beginPath();ctx.roundRect(bx,-6,tw,36,10);ctx.fill();
+    ctx.fillStyle='#fff';ctx.textAlign='left';ctx.fillText(m[2],bx+12,20);ctx.restore();});ctx.restore();}
+function badge(x,y,a,txt){if(a<=.01)return;ctx.save();ctx.globalAlpha=a;ctx.font='900 26px '+SER;const w=Math.max(44,ctx.measureText(txt).width+24);ctx.fillStyle='#ff4a5a';ctx.shadowColor='#ff4a5a';ctx.shadowBlur=18;ctx.beginPath();ctx.roundRect(x-w/2,y-22,w,44,22);ctx.fill();ctx.fillStyle='#fff';ctx.textAlign='center';ctx.shadowBlur=0;ctx.fillText(txt,x,y+9);ctx.restore();}
+function propFront(S,G,po){const{t,endF}=S;stepBox(QZ,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const gold=t>=CLIMAX||(t>=B(7)&&t<B(8)),red=t>=B(8)&&t<CLIMAX;const col=gold?GOLD:red?'#ff7a8a':PC;
+  const cx=G.hc[0]-300+DODGE(t,125),cy=G.hc[1]-115;const ca=endF*seg(t,2.5,2.75)*(1-seg(t,B(11)-.2,B(11)+.2));chatP(cx,cy,ca,col,t);
+  const n=t<2.85?'':t<4.45?'1':t<5.95?'99+':t<CLIMAX?'99+':'';const sh=(t>=2.85&&t<CLIMAX)?Math.sin(t*40)*3:0;badge(cx+130+sh,cy-128,ca*(n?1:0),n);
+  const za=endF*Math.min(1,win(t,4.45,5.85,.1,.15)+win(t,MK[0],MK[2]-.05,.1,.05)+win(t,B(6),LOCK,.1,.1));if(za>.01)for(let i=0;i<3;i++){const p=(t*.8+i/3)%1;ctx.save();ctx.globalAlpha=za*Math.sin(p*Math.PI);ctx.font='900 '+(28+p*26)+'px '+SER;ctx.fillStyle='#fff';ctx.shadowColor=PC;ctx.shadowBlur=14;ctx.fillText('Z',G.hc[0]+110+p*70,G.hc[1]-30-p*110);ctx.restore();}
+  if(t>=MK[2]&&t<MK[2]+.9)sparks(t,MK[2],G.fh[0],G.fh[1]-40,22,7,500,.8,'#ff5a5a',true);
+  if(t>=CLIMAX&&t<CLIMAX+1.2)sparks(t,CLIMAX,cx,cy,26,3,620,.9,GOLD,true);}
+"""),
+
+dict(py='yangsheng', ep=41, **SW, name='工位养生', en='DESK WELLNESS', epn='第四十一期', pc='#b0ff5a',
+  grad=['#ffffff','#ecffd4','#90e840'], glowC='rgba(176,255,90,.85)', kwCol='rgba(242,255,226,.92)', slamCol='#d0f0a8',
+  kw='保温杯泡枸杞 · 熬夜照旧 · 健康意识 · 养了个寂寞', words=['熬夜','黑眼圈','颈椎','焦虑'],
+  sky=SKY("['#0c1404','#2a4410','#90e840']","['#080c04','#1a2410','#344a1e']","['#0c1406','#4a6a2a','#ecffd4']"),
+  M="{lean:-.03,hd:0,fax:80,fay:-30,bax:-30,bay:60}", Z="{lean:.04,hd:.15,fax:90,fay:-40,bax:40,bay:50,exp:0}", E1='0', E2='4', EMK='0', TEVIL='0', BEXP='0',
+  MKA="[{fax:100,fay:-110},{fax:60,fay:-160,bax:-60,bay:-160},{fax:90,fay:-120,hd:-.15}]",
+  tags=['保温杯泡枸杞','熬夜照旧','健康意识','养了个寂寞'],
+  caps=[('有一种人',[('工位',0),('养生',1)]),('保温杯里',[('泡',0),('枸杞',1)]),('熬最晚的夜',[('敷最贵的',0),('面膜',1)]),('一边吃药',[('一边',0),('喝奶茶',1)]),('这就是',[('工位养生',1)]),
+        ('枸杞菊花',[('轮番',0),('上阵',1)]),('护颈枕',[('人手',0),('一个',1)]),
+        ('同事',[('递来',0),('奶茶',1)]),('他',[('一口',0),('闷了',1)]),
+        ('好的一面',[('有',0),('健康意识',1)]),('至少',[('在',0),('努力',1)]),
+        ('坏的一面',[('熬夜',0),('照旧',1)]),('枸杞',[('救不了',0),('命',1)]),
+        ('养生',[('不靠',0),('枸杞',1)]),('早点睡',[('才是',0),('真的',1)])],
+  cl=['今晚早睡','明天元气'], endCap=('最好的养生',[('是',0),('睡够觉',1)]),
+  tx=dict(i1='（拧开保温杯）',i2='昨晚又熬夜了？',i3='没事，我泡了枸杞',i4='奶茶喝吗？',i5='…要三分糖！',pv='朋克养生',pvi=0,
+     lab1=['枸杞','眼保健操','护肝片'],lab1c='#b0ff5a',mk=['再多泡点枸杞','保护视力！','吃片护肝的'],
+     w0=['b','奶茶到啦~'],w1=['t','少喝点冰的！'],lk='喝完…再养生',lkBig='一手枸杞，一手奶茶',
+     j0='身体是本钱~',j1='你好会照顾自己！',stBig='养生意识，拉满',
+     lab4=['熬夜','黑眼圈','颈椎痛'],s0='怎么…还是好累',s1='你黑眼圈好重啊',slBig='枸杞救不了熬的夜',
+     d1='……养了个寂寞',d2='今晚早睡！',e1='气色真好！',e2='精神满满！'),
+  prop=STEPBOX+r"""
+function DODGE(t,k=180){return -k*eOut(seg(t,B(8)-.3,B(8)))*(1-eOut(seg(t,SLAM+.2,SLAM+.6)));}
+const YS=[[2.67,'昨晚 2:00睡',1],[2.85,'枸杞 ×10',0],[4.45,'菊花茶 ✓',0],[5.95,'奶茶 +1',1],[6.4,'三分糖 ✓',0],[DROP,'朋克养生 ON',1],[MK[0],'枸杞 +20',0],[MK[1],'眼保健操',0],[MK[2],'护肝片 ✓',0],[B(6),'奶茶 +2',1],[B(7),'心态 平和',2],[B(8),'今晚 3:00睡',1],[SNAPS[1],'颈椎 报警',1],[CLIMAX,'23:00 早睡',2]];
+function cup(x,y,s,a,col,t){if(a<=.01)return;ctx.save();ctx.globalAlpha=a*.9;ctx.fillStyle='#0a1006';ctx.beginPath();ctx.roundRect(x-42*s,y-90*s,84*s,180*s,16*s);ctx.fill();ctx.restore();
+  const R=(x0,y0,w,h)=>[[x0,y0],[x0+w,y0],[x0+w,y0+h],[x0,y0+h],[x0,y0]];glow(R(x-42*s,y-90*s,84*s,180*s),1,col,3,a,14,false);glow(R(x-46*s,y-118*s,92*s,28*s),1,col,3,a,10,false);
+  glow([[x-42*s,y-50*s],[x+42*s,y-50*s]],1,col,1.6,a*.6,6,false);
+  for(let i=0;i<7;i++){const r=rng(i+3);const px=x+(r()-.5)*56*s+Math.sin(t*1.5+i)*6*s,py=y-30*s+r()*100*s+Math.sin(t*2+i*1.7)*8*s;dot(px,py,5*s,'#ff5a4a',a);}
+  for(let i=0;i<3;i++){const p=(t*.7+i/3)%1;const sx=x+(i-1)*24*s;const P=[];for(let k=0;k<=10;k++){const u=k/10;P.push([sx+Math.sin(u*6+t*3+i)*10*s,y-125*s-u*70*s-p*30*s]);}glow(P,1,'#ffffff',2,a*.5*Math.sin(p*Math.PI),8,false);}}
+function tea(x,y,a,col){if(a<=.01)return;ctx.save();ctx.globalAlpha=a*.9;ctx.fillStyle='#140c06';ctx.beginPath();ctx.moveTo(x-34,y-50);ctx.lineTo(x+34,y-50);ctx.lineTo(x+26,y+50);ctx.lineTo(x-26,y+50);ctx.fill();ctx.restore();
+  glow([[x-34,y-50],[x+34,y-50],[x+26,y+50],[x-26,y+50],[x-34,y-50]],1,col,3,a,12,false);glow([[x+6,y-50],[x+18,y-100]],1,col,4,a,8,false);for(let i=0;i<5;i++)dot(x-16+i*8,y+38-(i%2)*8,5,'#c08a5a',a);}
+function propFront(S,G,po){const{t,endF}=S;stepBox(YS,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const gold=t>=CLIMAX||(t>=B(7)&&t<B(8)),red=t>=B(8)&&t<CLIMAX;const col=gold?GOLD:red?'#ff7a8a':PC;
+  const ta=endF*Math.min(1,win(t,5.95,7.6,.1,.2)+win(t,WAVES[0],B(7)-.1,.1,.2));const cupInHand=ta<.5&&t<DROP;
+  const ca=endF*seg(t,2.5,2.75)*(1-seg(t,B(11)-.2,B(11)+.2));
+  if(cupInHand&&t>=2.5)cup(G.fh[0]+10,G.fh[1]-40,.8,ca,col,t);else cup(G.hc[0]-250+DODGE(t),G.hc[1]-100,1,ca,col,t);
+  if(!cupInHand)tea(G.fh[0]+10,G.fh[1]-30,ta,'#ffb07a');
+  const ey=endF*Math.min(1,win(t,2.67,4.4,.1,.1)+win(t,B(8),CLIMAX-.2,.2,.2));if(ey>.01){[-16,16].forEach(d=>glow(Q([G.hc[0]+d+14,G.hc[1]+14],[G.hc[0]+d+20,G.hc[1]+22],[G.hc[0]+d+26,G.hc[1]+14],6),1,'#7a6aa0',3,ey,6,false));}
+  if(t>=SNAPS[1]&&t<SLAM+.5){const a=endF*seg(t,SNAPS[1],SNAPS[1]+.1);glow([[G.nk[0]-24,G.nk[1]-6],[G.nk[0]-10,G.nk[1]+6],[G.nk[0]-24,G.nk[1]+16],[G.nk[0]-10,G.nk[1]+28]],1,'#ff5a5a',4,a,14,false);}
+  if(t>=CLIMAX&&t<CLIMAX+1.2)sparks(t,CLIMAX,G.hc[0]-250,G.hc[1]-100,26,3,620,.9,GOLD,true);}
+"""),
+
+dict(py='zhoubao', ep=42, **SW, name='周报文学', en='WEEKLY REPORT FICTION', epn='第四十二期', pc='#ff8ac8',
+  grad=['#ffffff','#ffdcef','#ff6ab4'], glowC='rgba(255,138,200,.85)', kwCol='rgba(255,232,244,.92)', slamCol='#ffc0e0',
+  kw='一行活三页纸 · 形容词堆满 · 会包装 · 越吹越圆不回', words=['心虚','空洞','压力','露馅'],
+  sky=SKY("['#1a0412','#5a1040','#ff6ab4']","['#10060c','#301024','#6a2048']","['#1a0a12','#8a3a6a','#ffdcef']"),
+  M="{lean:-.04,hd:.1,fax:90,fay:10,bax:50,bay:30}", Z="{lean:.04,hd:.2,fax:80,fay:-40,bax:30,bay:50,exp:4}", E1='0', E2='0', EMK='0', TEVIL='0', BEXP='4',
+  MKA="[{fax:110,fay:-100},{fax:100,fay:-150,bax:-90,bay:-60},{fax:110,fay:-160,bax:-110,bay:-160}]",
+  tags=['一行活三页纸','形容词堆满','会包装','圆不回来'],
+  caps=[('有一种人',[('周报',0),('写成小说',1)]),('改了一个bug',[('写成',0),('攻坚战',1)]),('开了一个会',[('写成',0),('里程碑',1)]),('一行的活',[('三页的',0),('报告',1)]),('这就是',[('周报文学',1)]),
+        ('形容词',[('层层',0),('叠加',1)]),('数据',[('全靠',0),('修饰',1)]),
+        ('同事',[('看完',0),('沉默',1)]),('领导',[('连连',0),('点头',1)]),
+        ('好的一面',[('会包装',0),('会表达',1)]),('功劳',[('被',0),('看见',1)]),
+        ('坏的一面',[('期望',0),('越吹越高',1)]),('下周',[('圆不',0),('回来',1)]),
+        ('写得再漂亮',[('也要',0),('有干货',1)]),('做得好',[('更要',0),('说得实',1)])],
+  cl=['写实一点','做实一点'], endCap=('周报',[('写的是',0),('真本事',1)]),
+  tx=dict(i1='（打开周报模板）',i2='周报交了吗？',i3='本周…改了个bug',i4='就这？',i5='看我润色一下！',pv='妙笔生花',pvi=3,
+     lab1=['赋能','提效200%','里程碑'],lab1c='#ff8ac8',mk=['全面赋能业务！','效率提升200%！','达成关键里程碑！'],
+     w0=['b','这…是你写的？'],w1=['t','不错！下周翻倍'],lk='呃…好的老板',lkBig='一行的活，三页的周报',
+     j0='包装也是能力~',j1='你文笔好好！',stBig='会做也会说，功劳看得见',
+     lab4=['KPI翻倍','圆不回来','露馅'],s0='下周…写啥啊',s1='上周说的成果呢？',slBig='吹出去的牛，要自己扛',
+     d1='……写的比做的多',d2='实话实说！',e1='清楚明白！',e2='真实靠谱！'),
+  prop=STEPBOX+r"""
+function DODGE(t,k=180){return -k*eOut(seg(t,B(8)-.3,B(8)))*(1-eOut(seg(t,SLAM+.2,SLAM+.6)));}
+const ZB=[[2.67,'本周：改1个bug',0],[2.85,'周五 17:00',1],[4.45,'字数 +500',0],[5.95,'形容词 ×20',1],[6.4,'周报 3页',0],[DROP,'周报文学 ON',1],[MK[0],'赋能 ×3',0],[MK[1],'提效 200%',0],[MK[2],'里程碑 ×5',1],[B(6),'实际工作 1行',1],[B(7),'老板 点赞',2],[B(8),'KPI ×2',1],[SNAPS[1],'圆不回来',1],[CLIMAX,'实事求是',2]];
+const DT=[[0,'改了个bug',1],[4.45,'优化系统稳定性',2],[6.4,'攻坚核心链路',4],[MK[0],'全面赋能业务',5],[MK[2],'达成关键里程碑',7],[B(8),'下周目标 ×2',7],[CLIMAX,'修复1个bug ✓',2]];
+function docAt(t){let r=DT[0];for(const d of DT)if(t>=d[0])r=d;return r;}
+function doc(x,y,a,col,t){if(a<=.01)return;const d=docAt(t);const pages=Math.min(3,1+Math.floor(d[2]/3));
+  for(let k=pages-1;k>=0;k--){const ox=k*16,oy=-k*16;ctx.save();ctx.globalAlpha=a*.93;ctx.fillStyle='#120810';ctx.fillRect(x-110+ox,y-140+oy,220,280);ctx.restore();glow([[x-110+ox,y-140+oy],[x+110+ox,y-140+oy],[x+110+ox,y+140+oy],[x-110+ox,y+140+oy],[x-110+ox,y-140+oy]],1,col,2.6,a*(k?.5:1),10,false);}
+  ctx.save();ctx.globalAlpha=a;ctx.textAlign='center';ctx.fillStyle='rgba(255,255,255,.7)';ctx.font='700 22px '+SER;ctx.fillText('本周工作总结',x,y-105);const p=eBack(seg(t,d[0],d[0]+.2));ctx.translate(x,y-58);ctx.scale(p,p);ctx.font='900 '+(d[1].length>6?28:34)+'px '+SER;ctx.fillStyle='#fff';ctx.shadowColor=col;ctx.shadowBlur=14;ctx.fillText(d[1],0,0);ctx.restore();
+  for(let i=0;i<Math.min(7,d[2]);i++){const w=150-((i*37)%60);glow([[x-90,y-20+i*22],[x-90+w,y-20+i*22]],seg(t,d[0]+i*.03,d[0]+i*.03+.2),col,2,a*.7,6,false);}}
+function propFront(S,G,po){const{t,endF}=S;stepBox(ZB,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const gold=t>=CLIMAX||(t>=B(7)&&t<B(8)),red=t>=B(8)&&t<CLIMAX;const col=gold?GOLD:red?'#ff7a8a':PC;
+  const da=endF*seg(t,2.5,2.75)*(1-seg(t,B(11)-.2,B(11)+.2));const dx=G.hc[0]-280+DODGE(t),dy=G.hc[1]-150;doc(dx,dy,da,col,t);
+  [4.45,6.4,MK[0],MK[2]].forEach((k,i)=>{if(t>=k&&t<k+.9)sparks(t,k,dx,dy-58,18,11+i,480,.8,PC,true);});
+  if(t>=SLAM&&t<SLAM+1)shards(t,SLAM,dx,dy,endF,61,PC,24,800);
+  if(t>=CLIMAX&&t<CLIMAX+1.2)sparks(t,CLIMAX,dx,dy-58,26,3,620,.9,GOLD,true);}
+"""),
+
+dict(py='huiyi', ep=43, **SW, name='会议狂魔', en='MEETING MANIAC', epn='第四十三期', pc='#8a9cff',
+  grad=['#ffffff','#dde2ff','#7084ff'], glowC='rgba(138,156,255,.85)', kwCol='rgba(232,236,255,.92)', slamCol='#c0c8ff',
+  kw='天天开会 · 会上加会 · 信息同步 · 没空干活', words=['冗长','疲惫','拖延','加班'],
+  sky=SKY("['#060a1a','#18245a','#7084ff']","['#06060e','#141830','#2a3060']","['#0a0c1a','#3a4a8a','#dde2ff']"),
+  M="{lean:-.05,hd:-.05,fax:110,fay:-60,bax:-40,bay:50}", Z="{lean:-.02,hd:0,fax:120,fay:-100,bax:-60,bay:40,exp:0}", E1='0', E2='0', EMK='0', TEVIL='1', BEXP='2',
+  MKA="[{fax:120,fay:-120},{fax:100,fay:-40,bax:-100,bay:-40},{fax:110,fay:-150,bax:-110,bay:-150}]",
+  tags=['天天开会','会上加会','信息同步','没空干活'],
+  caps=[('有一种人',[('天天',0),('开会',1)]),('早上晨会',[('下午',0),('对齐',1)]),('一小时的会',[('开成',0),('三小时',1)]),('开完会',[('再开会',0),('讨论会',1)]),('这就是',[('会议狂魔',1)]),
+        ('晨会对齐会',[('复盘',0),('会',1)]),('日历',[('全',0),('排满',1)]),
+        ('同事',[('在会上',0),('睡着',1)]),('正事',[('一件',0),('没干',1)]),
+        ('好的一面',[('信息',0),('同步及时',1)]),('大家',[('都在',0),('一条线',1)]),
+        ('坏的一面',[('会多到',0),('没空干活',1)]),('下班后',[('才开始',0),('工作',1)]),
+        ('能发消息的',[('别',0),('开会',1)]),('能开十分钟',[('别开',0),('一小时',1)])],
+  cl=['会要少开','事要多干'], endCap=('开会',[('是为了',0),('解决问题',1)]),
+  tx=dict(i1='（打开日历）',i2='今天又有会？',i3='来！拉个会！',i4='我还有活没干…',i5='先开会，再干活！',pv='会海无边',pvi=0,
+     lab1=['晨会','对齐会','复盘会'],lab1c='#8a9cff',mk=['同步一下进度','我们再对齐一下','复盘！复盘！'],
+     w0=['b','zzz…（会上睡着）'],w1=['t','所以结论是？'],lk='下次…再开会讨论',lkBig='开会三小时，结论没有',
+     j0='信息同步很重要~',j1='大家都清楚了！',stBig='信息同步，步调一致',
+     lab4=['没空干活','加班','崩溃'],s0='怎么…活都没干',s1='开完会，才开始上班',slBig='会开得越多，活干得越少',
+     d1='……原来会才是问题',d2='十五分钟搞定！',e1='高效！',e2='准时下班！'),
+  prop=STEPBOX+r"""
+function DODGE(t,k=180){return -k*eOut(seg(t,B(8)-.3,B(8)))*(1-eOut(seg(t,SLAM+.2,SLAM+.6)));}
+const HY=[[2.67,'会议 ×1',0],[2.85,'会议 ×3',0],[4.45,'会议 ×6',1],[5.95,'拖堂 1h',1],[6.4,'会后 再开会',1],[DROP,'开会模式 ON',1],[MK[0],'晨会 9:00',0],[MK[1],'对齐会 11:00',0],[MK[2],'复盘会 15:00',1],[B(6),'干活时间 0',1],[B(7),'信息 已同步',2],[B(8),'加班 补活',1],[SNAPS[1],'全员 崩溃',1],[CLIMAX,'15分钟 散会',2]];
+const NF=[[0,0],[2.85,3],[4.45,6],[6.4,9],[MK[0],10],[MK[2],12],[CLIMAX,1]];
+function nAt(t){let r=0;for(const n of NF)if(t>=n[0])r=n[1];return r;}
+function calG(x,y,a,col,t){if(a<=.01)return;const w=250,h=270;ctx.save();ctx.globalAlpha=a*.93;ctx.fillStyle='#080a16';ctx.fillRect(x-w/2,y-h/2,w,h);ctx.restore();
+  glow([[x-w/2,y-h/2],[x+w/2,y-h/2],[x+w/2,y+h/2],[x-w/2,y+h/2],[x-w/2,y-h/2]],1,col,3,a,14,false);glow([[x-w/2,y-h/2+46],[x+w/2,y-h/2+46]],1,col,2,a,8,false);
+  ctx.save();ctx.globalAlpha=a;ctx.font='800 24px '+SER;ctx.textAlign='center';ctx.fillStyle='#fff';ctx.fillText('今日日程',x,y-h/2+32);ctx.restore();
+  const n=nAt(t);let last=0;for(const q of NF)if(t>=q[0])last=q[0];
+  for(let i=0;i<12;i++){const c=i%3,r=Math.floor(i/3);const cx=x-w/2+18+c*74,cy=y-h/2+60+r*50;const on=i<n;const p=on?eBack(seg(t,last+(i%3)*.04,last+(i%3)*.04+.2)):0;
+    ctx.save();ctx.globalAlpha=a*(on?1:.35);ctx.strokeStyle=col;ctx.lineWidth=1.6;ctx.strokeRect(cx,cy,64,40);if(on){ctx.translate(cx+32,cy+20);ctx.scale(Math.max(p,.01),Math.max(p,.01));ctx.fillStyle=col;ctx.globalAlpha=a*.55;ctx.fillRect(-32,-20,64,40);ctx.globalAlpha=a;ctx.fillStyle='#fff';ctx.font='900 24px '+SER;ctx.textAlign='center';ctx.fillText('会',0,9);}ctx.restore();}}
+function propFront(S,G,po){const{t,endF}=S;stepBox(HY,220,GY-470,t,endF*seg(t,2.6,2.85)*(1-seg(t,B(11)-.2,B(11)+.2)),[PC,'#ff7a8a',GOLD],44);
+  const gold=t>=CLIMAX||(t>=B(7)&&t<B(8)),red=t>=B(8)&&t<CLIMAX;const col=gold?GOLD:red?'#ff7a8a':PC;
+  const ka=endF*seg(t,2.5,2.75)*(1-seg(t,B(11)-.2,B(11)+.2));const kx=G.hc[0]-290+DODGE(t),ky=G.hc[1]-160;calG(kx,ky,ka,col,t);
+  [2.85,4.45,6.4,...MK].forEach((k,i)=>{if(t>=k&&t<k+.8)sparks(t,k,kx,ky,16,21+i,420,.7,PC,true);});
+  const la=endF*Math.min(1,win(t,4.45,7.6,.1,.2)+win(t,MK[0],B(6)-.1,.1,.2));if(la>.01)for(let i=0;i<3;i++){const an=-1.0+i*.5;const p=(t*2+i*.3)%1;const r0=60+p*60;glow([[G.hc[0]+90+Math.cos(an)*r0,G.hc[1]+Math.sin(an)*r0],[G.hc[0]+90+Math.cos(an)*(r0+30),G.hc[1]+Math.sin(an)*(r0+30)]],1,PC,3,la*(1-p),10,false);}
+  if(t>=SLAM&&t<SLAM+1)shards(t,SLAM,kx,ky,endF,61,PC,24,800);
+  if(t>=CLIMAX&&t<CLIMAX+1.2)sparks(t,CLIMAX,kx,ky,26,3,620,.9,GOLD,true);}
+"""),
+]
